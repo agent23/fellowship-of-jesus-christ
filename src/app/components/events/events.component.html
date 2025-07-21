@@ -1,0 +1,126 @@
+<div class="events-container">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Church Events & Activities</h1>
+        <p>Join us for worship, fellowship, and community outreach</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events Tabs -->
+  <section class="events-section">
+    <div class="container">
+      <mat-tab-group class="events-tabs" animationDuration="300ms">
+        
+        <!-- Upcoming Events Tab -->
+        <mat-tab label="Upcoming Events">
+          <div class="tab-content">
+            <div class="events-grid">
+              <mat-card *ngFor="let event of upcomingEvents" class="event-card">
+                <mat-card-header>
+                  <div mat-card-avatar class="event-avatar">
+                    <mat-icon>event</mat-icon>
+                  </div>
+                  <mat-card-title>{{ event.title }}</mat-card-title>
+                  <mat-card-subtitle>
+                    {{ event.date | date:'EEEE, MMMM d, y' }} at {{ event.time }}
+                  </mat-card-subtitle>
+                </mat-card-header>
+                
+                <mat-card-content>
+                  <div class="event-details">
+                    <div class="event-meta">
+                      <mat-chip [color]="getEventTypeColor(event.type)">{{ event.type }}</mat-chip>
+                      <span class="location">
+                        <mat-icon>location_on</mat-icon>
+                        {{ event.location }}
+                      </span>
+                    </div>
+                    <p class="event-description">{{ event.description }}</p>
+                  </div>
+                </mat-card-content>
+                
+                <mat-card-actions>
+                  <button mat-button color="primary">Learn More</button>
+                  <button mat-stroked-button *ngIf="!event.recurring">Register</button>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </div>
+        </mat-tab>
+
+        <!-- Weekly Schedule Tab -->
+        <mat-tab label="Weekly Schedule">
+          <div class="tab-content">
+            <div class="schedule-grid">
+              <div *ngFor="let day of weeklySchedule" class="schedule-day">
+                <h3>{{ day.day }}</h3>
+                <div class="schedule-events">
+                  <div *ngFor="let event of day.events" class="schedule-item">
+                    <mat-icon>schedule</mat-icon>
+                    <span>{{ event }}</span>
+                  </div>
+                  <div *ngIf="day.events.length === 0" class="no-events">
+                    <span class="muted">No scheduled events</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+
+        <!-- Past Events Tab -->
+        <mat-tab label="Past Events">
+          <div class="tab-content">
+            <div class="events-grid">
+              <mat-card *ngFor="let event of pastEvents" class="event-card past-event">
+                <mat-card-header>
+                  <div mat-card-avatar class="event-avatar past">
+                    <mat-icon>history</mat-icon>
+                  </div>
+                  <mat-card-title>{{ event.title }}</mat-card-title>
+                  <mat-card-subtitle>
+                    {{ event.date | date:'MMMM d, y' }} at {{ event.time }}
+                  </mat-card-subtitle>
+                </mat-card-header>
+                
+                <mat-card-content>
+                  <div class="event-details">
+                    <div class="event-meta">
+                      <mat-chip [color]="getEventTypeColor(event.type)">{{ event.type }}</mat-chip>
+                      <span class="location">
+                        <mat-icon>location_on</mat-icon>
+                        {{ event.location }}
+                      </span>
+                    </div>
+                    <p class="event-description">{{ event.description }}</p>
+                  </div>
+                </mat-card-content>
+                
+                <mat-card-actions>
+                  <button mat-button color="primary">View Photos</button>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Want to Get Involved?</h2>
+        <p>There are many ways to participate in our church community. Contact us to learn more!</p>
+        <div class="cta-buttons">
+          <button mat-raised-button color="primary">Contact Us</button>
+          <button mat-stroked-button>View Calendar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,241 @@
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-overlay">
+    <div class="hero-content">
+      <h1>Church Archives</h1>
+      <p>Preserving our heritage and memories for future generations</p>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<div class="archives-container">
+  <div class="container">
+
+    <!-- Categories Overview -->
+    <section class="categories-section">
+      <h2>Archive Categories</h2>
+      <div class="categories-grid">
+        <mat-card class="category-card" *ngFor="let category of categoryStats">
+          <mat-card-header>
+            <mat-icon mat-card-avatar [style.background-color]="'#1e3c72'">{{ category.icon }}</mat-icon>
+            <mat-card-title>{{ category.name | titlecase }}</mat-card-title>
+            <mat-card-subtitle>{{ category.count }} items</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ category.description }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="primary" (click)="selectedCategory = category.name">
+              Browse {{ category.name | titlecase }}
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </section>
+
+    <mat-divider></mat-divider>
+
+    <!-- Search and Filters -->
+    <section class="filters-section">
+      <h2>Browse Archives</h2>
+      
+      <div class="filters-container">
+        <!-- Search -->
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Search archives...</mat-label>
+          <input matInput [(ngModel)]="searchTerm" placeholder="Search by title, description, or tags">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+
+        <!-- Category Filter -->
+        <mat-form-field appearance="outline">
+          <mat-label>Category</mat-label>
+          <mat-select [(value)]="selectedCategory">
+            <mat-option value="all">All Categories</mat-option>
+            <mat-option *ngFor="let category of categories" [value]="category.name">
+              {{ category.name | titlecase }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Type Filter -->
+        <mat-form-field appearance="outline">
+          <mat-label>File Type</mat-label>
+          <mat-select [(value)]="selectedType">
+            <mat-option value="all">All Types</mat-option>
+            <mat-option *ngFor="let type of types.slice(1)" [value]="type">
+              {{ type | titlecase }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Year Filter -->
+        <mat-form-field appearance="outline">
+          <mat-label>Year</mat-label>
+          <mat-select [(value)]="selectedYear">
+            <mat-option *ngFor="let year of years" [value]="year">
+              {{ year === 'all' ? 'All Years' : year }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Clear Filters -->
+        <button mat-stroked-button (click)="clearFilters()">
+          <mat-icon>clear</mat-icon>
+          Clear Filters
+        </button>
+      </div>
+
+      <!-- Active Filters Display -->
+      <div class="active-filters" *ngIf="selectedCategory !== 'all' || selectedType !== 'all' || selectedYear !== 'all' || searchTerm">
+        <span class="filter-label">Active filters:</span>
+        <mat-chip *ngIf="selectedCategory !== 'all'" class="filter-chip">
+          Category: {{ selectedCategory | titlecase }}
+        </mat-chip>
+        <mat-chip *ngIf="selectedType !== 'all'" class="filter-chip">
+          Type: {{ selectedType | titlecase }}
+        </mat-chip>
+        <mat-chip *ngIf="selectedYear !== 'all'" class="filter-chip">
+          Year: {{ selectedYear }}
+        </mat-chip>
+        <mat-chip *ngIf="searchTerm" class="filter-chip">
+          Search: "{{ searchTerm }}"
+        </mat-chip>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="results-section">
+      <div class="results-header">
+        <h3>
+          <mat-icon>folder_open</mat-icon>
+          Archive Results
+          <span class="result-count">({{ filteredArchives.length }} items)</span>
+        </h3>
+      </div>
+
+      <!-- Archives Grid -->
+      <div class="archives-grid" *ngIf="filteredArchives.length > 0">
+        <mat-card class="archive-card" *ngFor="let archive of filteredArchives">
+          <!-- Thumbnail/Icon -->
+          <div class="archive-thumbnail">
+            <div class="file-icon" [style.background-color]="getFileColor(archive.type)" *ngIf="!archive.thumbnailUrl">
+              <mat-icon>{{ getFileIcon(archive.type) }}</mat-icon>
+            </div>
+            <img *ngIf="archive.thumbnailUrl" [src]="archive.thumbnailUrl" [alt]="archive.title">
+            <div class="file-type-badge">
+              <mat-icon>{{ getFileIcon(archive.type) }}</mat-icon>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <mat-card-content>
+            <div class="archive-meta">
+              <mat-chip class="category-chip">{{ archive.category | titlecase }}</mat-chip>
+              <span class="file-size">{{ archive.size }}</span>
+            </div>
+            
+            <h4>{{ archive.title }}</h4>
+            <p class="archive-description">{{ archive.description }}</p>
+            
+            <div class="archive-details">
+              <div class="detail-item" *ngIf="archive.author">
+                <mat-icon>person</mat-icon>
+                <span>{{ archive.author }}</span>
+              </div>
+              <div class="detail-item">
+                <mat-icon>calendar_today</mat-icon>
+                <span>{{ archive.uploadDate | date:'mediumDate' }}</span>
+              </div>
+              <div class="detail-item">
+                <mat-icon>schedule</mat-icon>
+                <span>{{ archive.year }}</span>
+              </div>
+            </div>
+
+            <div class="archive-tags" *ngIf="archive.tags.length > 0">
+              <mat-chip *ngFor="let tag of archive.tags" class="tag-chip">{{ tag }}</mat-chip>
+            </div>
+          </mat-card-content>
+
+          <!-- Actions -->
+          <mat-card-actions>
+            <button mat-button color="primary" (click)="previewFile(archive)">
+              <mat-icon>visibility</mat-icon>
+              Preview
+            </button>
+            <button mat-raised-button color="primary" (click)="downloadFile(archive)">
+              <mat-icon>download</mat-icon>
+              Download
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+      <!-- No Results -->
+      <div class="no-results" *ngIf="filteredArchives.length === 0">
+        <mat-icon>search_off</mat-icon>
+        <h3>No archives found</h3>
+        <p>Try adjusting your search criteria or filters to find what you're looking for.</p>
+        <button mat-raised-button color="primary" (click)="clearFilters()">
+          Clear All Filters
+        </button>
+      </div>
+    </section>
+
+    <!-- Archive Stats -->
+    <section class="stats-section">
+      <h2>Archive Statistics</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <mat-icon>folder</mat-icon>
+          <div class="stat-content">
+            <h3>{{ archives.length }}</h3>
+            <p>Total Documents</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <mat-icon>category</mat-icon>
+          <div class="stat-content">
+            <h3>{{ categories.length }}</h3>
+            <p>Categories</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <mat-icon>storage</mat-icon>
+          <div class="stat-content">
+            <h3>2.1 GB</h3>
+            <p>Total Storage</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <mat-icon>history</mat-icon>
+          <div class="stat-content">
+            <h3>72 Years</h3>
+            <p>Church History</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Upload CTA -->
+    <section class="upload-cta">
+      <div class="cta-content">
+        <h2>Help Preserve Our History</h2>
+        <p>Do you have historical documents, photos, or recordings that would be valuable to our church archives? Contact our archives team to contribute.</p>
+        <div class="cta-buttons">
+          <button mat-raised-button color="primary">
+            <mat-icon>cloud_upload</mat-icon>
+            Contribute to Archives
+          </button>
+          <button mat-stroked-button>
+            <mat-icon>contact_mail</mat-icon>
+            Contact Archives Team
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>

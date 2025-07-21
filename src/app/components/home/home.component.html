@@ -1,0 +1,101 @@
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-overlay">
+    <div class="hero-content">
+      <h1 class="hero-title">Welcome to Fellowship of Jesus Christ</h1>
+      <p class="hero-subtitle">
+        A community of faith, hope, and love serving God and our neighbors
+      </p>
+      <div class="hero-buttons">
+        <button mat-raised-button color="primary" class="cta-button" routerLink="/about">
+          Learn More About Us
+        </button>
+        <button mat-stroked-button class="cta-button secondary" routerLink="/contact">
+          Visit Us Today
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Service Times Section -->
+<section class="service-times-section">
+  <div class="container">
+    <h2 class="section-title">Join Us for Worship</h2>
+    <div class="service-times">
+      <div class="service-time-card">
+        <mat-icon class="service-icon">church</mat-icon>
+        <h3>Sunday Service</h3>
+        <p class="time">10:00 AM</p>
+        <p class="description">Traditional worship with communion</p>
+      </div>
+      <div class="service-time-card">
+        <mat-icon class="service-icon">groups</mat-icon>
+        <h3>Bible Study</h3>
+        <p class="time">Wednesday 7:00 PM</p>
+        <p class="description">Deep dive into God's word together</p>
+      </div>
+      <div class="service-time-card">
+        <mat-icon class="service-icon">child_care</mat-icon>
+        <h3>Youth Ministry</h3>
+        <p class="time">Friday 6:30 PM</p>
+        <p class="description">Fun activities and spiritual growth</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Upcoming Events -->
+<section class="events-section">
+  <div class="container">
+    <h2 class="section-title">Upcoming Events</h2>
+    <div class="events-grid">
+      <mat-card *ngFor="let event of upcomingEvents" class="event-card">
+        <mat-card-header>
+          <mat-card-title>{{ event.title }}</mat-card-title>
+          <mat-card-subtitle>{{ event.date | date:'mediumDate' }} at {{ event.time }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ event.description }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="events-cta">
+      <button mat-button routerLink="/events" class="view-all-button">
+        View All Events
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Quick Links -->
+<section class="quick-links-section">
+  <div class="container">
+    <h2 class="section-title">Explore Our Ministry</h2>
+    <div class="quick-links-grid">
+      <div *ngFor="let link of quickLinks" class="quick-link-card" [routerLink]="link.route">
+        <mat-icon class="quick-link-icon">{{ link.icon }}</mat-icon>
+        <h3>{{ link.title }}</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Ready to Join Our Community?</h2>
+      <p>We'd love to welcome you into our church family. Come as you are!</p>
+      <div class="cta-buttons">
+        <button mat-raised-button color="primary" routerLink="/contact">
+          Plan Your Visit
+        </button>
+        <button mat-stroked-button routerLink="/about">
+          Learn More
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

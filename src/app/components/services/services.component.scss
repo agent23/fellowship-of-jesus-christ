@@ -1,0 +1,491 @@
+.services-container {
+  min-height: 100vh;
+}
+
+// Hero Section
+.hero-section {
+  height: 50vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+              url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+.hero-overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  max-width: 800px;
+  padding: 0 20px;
+
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  p {
+    font-size: 1.4rem;
+    font-weight: 300;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    line-height: 1.5;
+  }
+}
+
+// Container
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+// Section Spacing
+section {
+  padding: 4rem 0;
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #1e3c72;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+}
+
+// Service Times Section
+.service-times-section {
+  background: white;
+}
+
+.service-times-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.service-time-card {
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  border-left: 4px solid #1e3c72;
+  display: flex;
+  gap: 1.5rem;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    background: white;
+  }
+
+  &.main-service {
+    border-left-color: #ff6b35;
+    background: linear-gradient(135deg, #fff9f6 0%, #ffffff 100%);
+    
+    .service-icon {
+      background: linear-gradient(135deg, #ff6b35 0%, #ff8a65 100%);
+    }
+  }
+
+  .service-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    mat-icon {
+      font-size: 2.5rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      color: white;
+    }
+  }
+
+  .service-info {
+    flex: 1;
+
+    h3 {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .time {
+      font-size: 1.2rem;
+      color: #1e3c72;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      .feature {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: 0.9rem;
+        color: #666;
+        background: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        border: 1px solid #e0e0e0;
+
+        mat-icon {
+          font-size: 16px;
+          width: 16px;
+          height: 16px;
+          color: #1e3c72;
+        }
+      }
+    }
+  }
+}
+
+// What to Expect Section
+.what-to-expect-section {
+  background: #f8f9fa;
+}
+
+.expectation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.expectation-item {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .expectation-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem auto;
+
+    mat-icon {
+      font-size: 2.5rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      color: white;
+    }
+  }
+
+  h3 {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  p {
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+// Ministries Section
+.ministries-section {
+  background: white;
+}
+
+.ministries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 3rem;
+}
+
+.ministry-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  .ministry-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+
+    .ministry-overlay {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 60px;
+      height: 60px;
+      background: rgba(30, 60, 114, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+
+      mat-icon {
+        font-size: 2rem;
+        width: 2rem;
+        height: 2rem;
+        color: white;
+      }
+    }
+  }
+
+  .ministry-content {
+    padding: 2rem;
+
+    h3 {
+      font-size: 1.4rem;
+      color: #333;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .ministry-age {
+      color: #1e3c72;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        padding: 0.5rem 0;
+        color: #666;
+        position: relative;
+        padding-left: 1.5rem;
+
+        &:before {
+          content: '✓';
+          position: absolute;
+          left: 0;
+          color: #1e3c72;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+// Special Services Section
+.special-services-section {
+  background: #f8f9fa;
+}
+
+.special-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.special-service-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border-top: 4px solid #1e3c72;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .service-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+
+    mat-icon {
+      font-size: 3rem;
+      width: 3rem;
+      height: 3rem;
+      color: #1e3c72;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      color: #333;
+      margin: 0;
+      font-weight: 600;
+    }
+  }
+
+  p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-date {
+    display: inline-block;
+    background: #1e3c72;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+}
+
+// Get Involved Section
+.get-involved-section {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+  text-align: center;
+
+  h2 {
+    color: white;
+  }
+
+  .cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    button {
+      padding: 12px 24px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      &[mat-stroked-button] {
+        color: white;
+        border-color: white;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+
+  .service-times-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-time-card {
+    flex-direction: column;
+    text-align: center;
+
+    .service-info .service-features {
+      justify-content: center;
+    }
+  }
+
+  .expectation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ministries-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .special-services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  section {
+    padding: 3rem 0;
+
+    h2 {
+      font-size: 2rem;
+    }
+  }
+}

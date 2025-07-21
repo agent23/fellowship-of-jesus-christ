@@ -1,0 +1,87 @@
+<mat-toolbar class="navbar" color="primary">
+  <div class="nav-container">
+    <!-- Logo/Brand -->
+    <div class="brand">
+      <a routerLink="/home" class="brand-link">
+        <mat-icon class="brand-icon">church</mat-icon>
+        <span class="brand-text">Fellowship of Jesus Christ</span>
+      </a>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+      <a
+        *ngFor="let item of navigationItems"
+        [routerLink]="item.route"
+        mat-button
+        class="nav-link"
+        routerLinkActive="active"
+      >
+        {{ item.label }}
+      </a>
+    </nav>
+
+    <!-- Admin Section -->
+    <div class="admin-section">
+      <!-- Admin Status (when logged in) -->
+      <div *ngIf="isLoggedIn$ | async" class="admin-status">
+        <button mat-button [matMenuTriggerFor]="adminMenu" class="admin-button">
+          <mat-icon>admin_panel_settings</mat-icon>
+          <span>{{ (currentUser$ | async)?.username }}</span>
+          <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+
+        <mat-menu #adminMenu="matMenu">
+          <a mat-menu-item routerLink="/admin">
+            <mat-icon>dashboard</mat-icon>
+            <span>Admin Dashboard</span>
+          </a>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </div>
+
+      <!-- Login Button (when not logged in) -->
+      <a *ngIf="!(isLoggedIn$ | async)" routerLink="/admin/login" mat-stroked-button class="login-button">
+        <mat-icon>login</mat-icon>
+        Admin Login
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button mat-icon-button class="mobile-menu-btn" [matMenuTriggerFor]="mobileMenu">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <!-- Mobile Menu -->
+    <mat-menu #mobileMenu="matMenu" class="mobile-menu">
+      <a
+        *ngFor="let item of navigationItems"
+        [routerLink]="item.route"
+        mat-menu-item
+        class="mobile-nav-link"
+      >
+        {{ item.label }}
+      </a>
+      <mat-divider></mat-divider>
+      <!-- Mobile Admin Section -->
+      <div *ngIf="isLoggedIn$ | async">
+        <a mat-menu-item routerLink="/admin">
+          <mat-icon>dashboard</mat-icon>
+          <span>Admin Dashboard</span>
+        </a>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </div>
+      <a *ngIf="!(isLoggedIn$ | async)" mat-menu-item routerLink="/admin/login">
+        <mat-icon>login</mat-icon>
+        <span>Admin Login</span>
+      </a>
+    </mat-menu>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,203 @@
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-overlay">
+    <div class="hero-content">
+      <h1>Blog & Announcements</h1>
+      <p>Stay connected with our church family through inspiring articles, sermons, and important updates</p>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<div class="blog-container">
+  <div class="container">
+
+    <!-- Announcements Section -->
+    <section class="announcements-section">
+      <h2>Church Announcements</h2>
+      
+      <!-- Pinned Announcements -->
+      <div class="pinned-announcements" *ngIf="pinnedAnnouncements.length > 0">
+        <h3><mat-icon>push_pin</mat-icon> Pinned Announcements</h3>
+        <div class="announcements-grid">
+          <mat-card class="announcement-card pinned" *ngFor="let announcement of pinnedAnnouncements">
+            <mat-card-header>
+              <mat-icon mat-card-avatar [color]="getAnnouncementColor(announcement.type)">
+                {{ getAnnouncementIcon(announcement.type) }}
+              </mat-icon>
+              <mat-card-title>{{ announcement.title }}</mat-card-title>
+              <mat-card-subtitle>
+                {{ announcement.publishDate | date:'mediumDate' }}
+                <mat-icon class="pin-icon">push_pin</mat-icon>
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{ announcement.content }}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+
+      <!-- Regular Announcements -->
+      <div class="regular-announcements" *ngIf="regularAnnouncements.length > 0">
+        <h3><mat-icon>notifications</mat-icon> Recent Announcements</h3>
+        <div class="announcements-grid">
+          <mat-card class="announcement-card" *ngFor="let announcement of regularAnnouncements">
+            <mat-card-header>
+              <mat-icon mat-card-avatar [color]="getAnnouncementColor(announcement.type)">
+                {{ getAnnouncementIcon(announcement.type) }}
+              </mat-icon>
+              <mat-card-title>{{ announcement.title }}</mat-card-title>
+              <mat-card-subtitle>{{ announcement.publishDate | date:'mediumDate' }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{ announcement.content }}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </section>
+
+    <mat-divider></mat-divider>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+      <div class="blog-header">
+        <h2>Church Blog</h2>
+        <p>Inspiring articles, sermons, and stories from our church family</p>
+      </div>
+
+      <!-- Search and Filter -->
+      <div class="blog-controls">
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Search articles...</mat-label>
+          <input matInput [(ngModel)]="searchTerm" placeholder="Search by title, content, or tags">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+
+        <div class="category-chips">
+          <mat-chip-set>
+            <mat-chip 
+              *ngFor="let category of categories"
+              [class.selected]="selectedCategory === category"
+              (click)="selectCategory(category)"
+              (keydown.enter)="selectCategory(category)"
+              (keydown.space)="selectCategory(category)">
+              {{ category | titlecase }}
+            </mat-chip>
+          </mat-chip-set>
+        </div>
+      </div>
+
+      <!-- Featured Posts -->
+      <div class="featured-posts" *ngIf="featuredPosts.length > 0 && selectedCategory === 'all' && !searchTerm">
+        <h3><mat-icon>star</mat-icon> Featured Articles</h3>
+        <div class="featured-grid">
+          <mat-card class="featured-post-card" *ngFor="let post of featuredPosts">
+            <div class="post-image">
+              <img [src]="post.imageUrl" [alt]="post.title">
+              <div class="featured-badge">
+                <mat-icon>star</mat-icon>
+                Featured
+              </div>
+            </div>
+            <mat-card-content>
+              <div class="post-meta">
+                <mat-chip class="category-chip">{{ post.category | titlecase }}</mat-chip>
+                <span class="read-time">{{ post.readTime }}</span>
+              </div>
+              <h3>{{ post.title }}</h3>
+              <p class="post-excerpt">{{ post.excerpt }}</p>
+              <div class="post-footer">
+                <div class="author-info">
+                  <mat-icon>person</mat-icon>
+                  <span>{{ post.author }}</span>
+                  <span class="date">{{ post.publishDate | date:'mediumDate' }}</span>
+                </div>
+                <div class="post-tags">
+                  <mat-chip *ngFor="let tag of post.tags" class="tag-chip">{{ tag }}</mat-chip>
+                </div>
+              </div>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button color="primary" (click)="readPost(post)">
+                Read More
+                <mat-icon>arrow_forward</mat-icon>
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+
+      <!-- All Posts -->
+      <div class="all-posts">
+        <h3 *ngIf="selectedCategory === 'all' && !searchTerm">
+          <mat-icon>article</mat-icon> Recent Articles
+        </h3>
+        <h3 *ngIf="selectedCategory !== 'all'">
+          <mat-icon>filter_list</mat-icon> {{ selectedCategory | titlecase }} Articles
+        </h3>
+        <h3 *ngIf="searchTerm">
+          <mat-icon>search</mat-icon> Search Results
+        </h3>
+
+        <div class="posts-grid" *ngIf="filteredPosts.length > 0">
+          <mat-card class="post-card" *ngFor="let post of filteredPosts">
+            <div class="post-image-small">
+              <img [src]="post.imageUrl" [alt]="post.title">
+            </div>
+            <mat-card-content>
+              <div class="post-meta">
+                <mat-chip class="category-chip">{{ post.category | titlecase }}</mat-chip>
+                <span class="read-time">{{ post.readTime }}</span>
+              </div>
+              <h4>{{ post.title }}</h4>
+              <p class="post-excerpt">{{ post.excerpt }}</p>
+              <div class="post-footer">
+                <div class="author-info">
+                  <mat-icon>person</mat-icon>
+                  <span>{{ post.author }}</span>
+                  <span class="date">{{ post.publishDate | date:'shortDate' }}</span>
+                </div>
+                <div class="post-tags">
+                  <mat-chip *ngFor="let tag of post.tags" class="tag-chip">{{ tag }}</mat-chip>
+                </div>
+              </div>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button color="primary" (click)="readPost(post)">
+                Read More
+                <mat-icon>arrow_forward</mat-icon>
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+
+        <div class="no-results" *ngIf="filteredPosts.length === 0">
+          <mat-icon>search_off</mat-icon>
+          <h3>No articles found</h3>
+          <p>Try adjusting your search terms or category filter.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="newsletter-cta">
+      <div class="cta-content">
+        <h2>Stay Connected</h2>
+        <p>Subscribe to our newsletter to receive the latest updates, articles, and announcements directly in your inbox.</p>
+        <div class="cta-buttons">
+          <button mat-raised-button color="primary">
+            <mat-icon>email</mat-icon>
+            Subscribe to Newsletter
+          </button>
+          <button mat-stroked-button>
+            <mat-icon>rss_feed</mat-icon>
+            RSS Feed
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>

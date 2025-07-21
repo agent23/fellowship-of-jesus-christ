@@ -1,0 +1,377 @@
+<!-- Admin Header -->
+<div class="admin-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="header-title">
+        <mat-icon>admin_panel_settings</mat-icon>
+        <div class="title-info">
+          <h1>Admin Dashboard</h1>
+          <p class="user-info" *ngIf="currentUser">
+            Welcome, {{ currentUser.username }} 
+            <span class="role-badge" [class]="currentUser.role">{{ currentUser.role }}</span>
+          </p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button mat-raised-button color="primary" *ngIf="hasPermission('upload_files')">
+          <mat-icon>cloud_upload</mat-icon>
+          Upload Files
+        </button>
+        <button mat-raised-button color="primary" *ngIf="hasPermission('manage_blog')">
+          <mat-icon>add</mat-icon>
+          Create New
+        </button>
+        <button mat-stroked-button *ngIf="hasPermission('system_settings')">
+          <mat-icon>settings</mat-icon>
+          Settings
+        </button>
+        <button mat-stroked-button (click)="logout()" class="logout-btn">
+          <mat-icon>logout</mat-icon>
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Admin Content -->
+<div class="admin-container">
+  <div class="container">
+
+    <mat-tab-group class="admin-tabs">
+      
+      <!-- Dashboard Tab -->
+      <mat-tab label="Dashboard">
+        <div class="tab-content">
+          
+          <!-- Statistics Cards -->
+          <section class="stats-section">
+            <h2>Overview Statistics</h2>
+            <div class="stats-grid">
+              <mat-card class="stat-card members">
+                <div class="stat-icon">
+                  <mat-icon>group</mat-icon>
+                </div>
+                <div class="stat-content">
+                  <h3>{{ stats.totalMembers }}</h3>
+                  <p>Total Members</p>
+                  <span class="stat-change positive">+{{ stats.newMembersThisMonth }} this month</span>
+                </div>
+              </mat-card>
+
+              <mat-card class="stat-card attendance">
+                <div class="stat-icon">
+                  <mat-icon>event_seat</mat-icon>
+                </div>
+                <div class="stat-content">
+                  <h3>{{ stats.weeklyAttendance }}</h3>
+                  <p>Weekly Attendance</p>
+                  <span class="stat-change positive">+12% from last week</span>
+                </div>
+              </mat-card>
+
+              <mat-card class="stat-card donations">
+                <div class="stat-icon">
+                  <mat-icon>attach_money</mat-icon>
+                </div>
+                <div class="stat-content">
+                  <h3>${{ stats.monthlyDonations.toLocaleString() }}</h3>
+                  <p>Monthly Donations</p>
+                  <span class="stat-change positive">+8% from last month</span>
+                </div>
+              </mat-card>
+
+              <mat-card class="stat-card events">
+                <div class="stat-icon">
+                  <mat-icon>event</mat-icon>
+                </div>
+                <div class="stat-content">
+                  <h3>{{ stats.activeEvents }}</h3>
+                  <p>Active Events</p>
+                  <span class="stat-change neutral">{{ stats.upcomingEvents }} upcoming</span>
+                </div>
+              </mat-card>
+            </div>
+          </section>
+
+          <!-- Recent Activity -->
+          <section class="activity-section">
+            <h2>Recent Activity</h2>
+            <mat-card class="activity-card">
+              <div class="activity-list">
+                <div class="activity-item" *ngFor="let activity of recentActivities">
+                  <div class="activity-icon" [style.background-color]="getActivityColor(activity.type)">
+                    <mat-icon>{{ getActivityIcon(activity.type) }}</mat-icon>
+                  </div>
+                  <div class="activity-content">
+                    <p class="activity-description">{{ activity.description }}</p>
+                    <div class="activity-meta">
+                      <span class="activity-user" *ngIf="activity.user">by {{ activity.user }}</span>
+                      <span class="activity-time">{{ activity.timestamp | date:'short' }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-card>
+          </section>
+
+          <!-- Quick Actions -->
+          <section class="quick-actions-section">
+            <h2>Quick Actions</h2>
+            <div class="actions-grid">
+              <mat-card class="action-card" (click)="generateReport('attendance')" (keydown.enter)="generateReport('attendance')" (keydown.space)="generateReport('attendance')">
+                <mat-icon>assessment</mat-icon>
+                <h3>Generate Report</h3>
+                <p>Create attendance and engagement reports</p>
+              </mat-card>
+
+              <mat-card class="action-card" (click)="exportData('members')" (keydown.enter)="exportData('members')" (keydown.space)="exportData('members')">
+                <mat-icon>download</mat-icon>
+                <h3>Export Data</h3>
+                <p>Export member and donation data</p>
+              </mat-card>
+
+              <mat-card class="action-card">
+                <mat-icon>email</mat-icon>
+                <h3>Send Newsletter</h3>
+                <p>Send updates to all members</p>
+              </mat-card>
+
+              <mat-card class="action-card">
+                <mat-icon>backup</mat-icon>
+                <h3>Backup Data</h3>
+                <p>Create a backup of all church data</p>
+              </mat-card>
+            </div>
+          </section>
+
+        </div>
+      </mat-tab>
+
+      <!-- Content Management Tab -->
+      <mat-tab label="Content Management">
+        <div class="tab-content">
+          
+          <section class="content-section">
+            <div class="section-header">
+              <h2>Content Management</h2>
+              <div class="section-actions">
+                <button mat-raised-button color="primary">
+                  <mat-icon>add</mat-icon>
+                  Create New Content
+                </button>
+              </div>
+            </div>
+
+            <!-- Content Table -->
+            <mat-card class="content-table-card">
+              <table mat-table [dataSource]="contentItems" class="content-table">
+                
+                <!-- Title Column -->
+                <ng-container matColumnDef="title">
+                  <th mat-header-cell *matHeaderCellDef>Title</th>
+                  <td mat-cell *matCellDef="let item">{{ item.title }}</td>
+                </ng-container>
+
+                <!-- Type Column -->
+                <ng-container matColumnDef="type">
+                  <th mat-header-cell *matHeaderCellDef>Type</th>
+                  <td mat-cell *matCellDef="let item">
+                    <span class="type-badge" [class]="'type-' + item.type">{{ item.type | titlecase }}</span>
+                  </td>
+                </ng-container>
+
+                <!-- Status Column -->
+                <ng-container matColumnDef="status">
+                  <th mat-header-cell *matHeaderCellDef>Status</th>
+                  <td mat-cell *matCellDef="let item">
+                    <span class="status-badge" [class]="'status-' + item.status">{{ item.status | titlecase }}</span>
+                  </td>
+                </ng-container>
+
+                <!-- Author Column -->
+                <ng-container matColumnDef="author">
+                  <th mat-header-cell *matHeaderCellDef>Author</th>
+                  <td mat-cell *matCellDef="let item">{{ item.author }}</td>
+                </ng-container>
+
+                <!-- Created Column -->
+                <ng-container matColumnDef="created">
+                  <th mat-header-cell *matHeaderCellDef>Created</th>
+                  <td mat-cell *matCellDef="let item">{{ item.createdDate | date:'shortDate' }}</td>
+                </ng-container>
+
+                <!-- Actions Column -->
+                <ng-container matColumnDef="actions">
+                  <th mat-header-cell *matHeaderCellDef>Actions</th>
+                  <td mat-cell *matCellDef="let item">
+                    <button mat-icon-button (click)="editContent(item)" matTooltip="Edit">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="publishContent(item)" *ngIf="item.status === 'draft'" matTooltip="Publish">
+                      <mat-icon>publish</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="deleteContent(item)" matTooltip="Delete" color="warn">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            </mat-card>
+
+          </section>
+
+        </div>
+      </mat-tab>
+
+      <!-- File Management Tab -->
+      <mat-tab label="File Management">
+        <div class="tab-content">
+          
+          <section class="upload-section">
+            <h2>File Upload & Management</h2>
+            
+            <!-- Upload Area -->
+            <mat-card class="upload-card">
+              <div class="upload-area">
+                <mat-icon class="upload-icon">cloud_upload</mat-icon>
+                <h3>Upload Files</h3>
+                <p>Drag and drop files here or click to browse</p>
+                <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;" multiple>
+                <button mat-raised-button color="primary" (click)="fileInput.click()">
+                  <mat-icon>folder_open</mat-icon>
+                  Choose Files
+                </button>
+              </div>
+
+              <!-- Upload Progress -->
+              <div class="upload-progress" *ngIf="isUploading">
+                <p>Uploading files...</p>
+                <mat-progress-bar [value]="uploadProgress"></mat-progress-bar>
+                <span>{{ uploadProgress }}%</span>
+              </div>
+            </mat-card>
+
+            <!-- File Type Guidelines -->
+            <mat-card class="guidelines-card">
+              <h3>Upload Guidelines</h3>
+              <div class="guidelines-grid">
+                <div class="guideline-item">
+                  <mat-icon>image</mat-icon>
+                  <div>
+                    <strong>Images</strong>
+                    <p>JPG, PNG, GIF up to 10MB</p>
+                  </div>
+                </div>
+                <div class="guideline-item">
+                  <mat-icon>videocam</mat-icon>
+                  <div>
+                    <strong>Videos</strong>
+                    <p>MP4, MOV up to 500MB</p>
+                  </div>
+                </div>
+                <div class="guideline-item">
+                  <mat-icon>audiotrack</mat-icon>
+                  <div>
+                    <strong>Audio</strong>
+                    <p>MP3, WAV up to 100MB</p>
+                  </div>
+                </div>
+                <div class="guideline-item">
+                  <mat-icon>description</mat-icon>
+                  <div>
+                    <strong>Documents</strong>
+                    <p>PDF, DOC, DOCX up to 25MB</p>
+                  </div>
+                </div>
+              </div>
+            </mat-card>
+
+          </section>
+
+        </div>
+      </mat-tab>
+
+      <!-- Reports Tab -->
+      <mat-tab label="Reports">
+        <div class="tab-content">
+          
+          <section class="reports-section">
+            <h2>Reports & Analytics</h2>
+            
+            <div class="reports-grid">
+              
+              <!-- Attendance Report -->
+              <mat-card class="report-card">
+                <mat-card-header>
+                  <mat-icon mat-card-avatar>assessment</mat-icon>
+                  <mat-card-title>Attendance Report</mat-card-title>
+                  <mat-card-subtitle>Weekly and monthly attendance trends</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>Generate detailed attendance reports with trends and analytics.</p>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button mat-button color="primary" (click)="generateReport('attendance')">Generate Report</button>
+                </mat-card-actions>
+              </mat-card>
+
+              <!-- Financial Report -->
+              <mat-card class="report-card">
+                <mat-card-header>
+                  <mat-icon mat-card-avatar>account_balance</mat-icon>
+                  <mat-card-title>Financial Report</mat-card-title>
+                  <mat-card-subtitle>Donations and expenses summary</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>View donation trends, expenses, and financial health metrics.</p>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button mat-button color="primary" (click)="generateReport('financial')">Generate Report</button>
+                </mat-card-actions>
+              </mat-card>
+
+              <!-- Membership Report -->
+              <mat-card class="report-card">
+                <mat-card-header>
+                  <mat-icon mat-card-avatar>groups</mat-icon>
+                  <mat-card-title>Membership Report</mat-card-title>
+                  <mat-card-subtitle>Member growth and engagement</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>Track member growth, retention, and engagement metrics.</p>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button mat-button color="primary" (click)="generateReport('membership')">Generate Report</button>
+                </mat-card-actions>
+              </mat-card>
+
+              <!-- Event Report -->
+              <mat-card class="report-card">
+                <mat-card-header>
+                  <mat-icon mat-card-avatar>event_note</mat-icon>
+                  <mat-card-title>Event Report</mat-card-title>
+                  <mat-card-subtitle>Event attendance and feedback</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>Analyze event success, attendance rates, and participant feedback.</p>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button mat-button color="primary" (click)="generateReport('events')">Generate Report</button>
+                </mat-card-actions>
+              </mat-card>
+
+            </div>
+
+          </section>
+
+        </div>
+      </mat-tab>
+
+    </mat-tab-group>
+
+  </div>
+</div>
