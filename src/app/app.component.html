@@ -1,2 +1,149 @@
 <app-navigation></app-navigation>
 <router-outlet></router-outlet>
+
+<!-- Modern Footer Section -->
+<footer class="main-footer">
+
+  <!-- Main Footer Content -->
+  <div class="footer-main">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Church Info Column -->
+        <div class="footer-column church-info">
+          <div class="footer-logo">
+            <mat-icon class="logo-icon">church</mat-icon>
+            <h3>Fellowship of Jesus Christ</h3>
+          </div>
+          <p class="church-description">
+            A community of faith, hope, and love serving God and our neighbors.
+            Everyone is welcome to fellowship with us regardless of background or beliefs.
+          </p>
+
+          <!-- Contact Info -->
+          <div class="contact-info">
+            <div class="contact-item">
+              <mat-icon>location_on</mat-icon>
+              <div>
+                <span>Faith Street</span>
+                <span>Mazenod, Maseru 1010</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <mat-icon>phone</mat-icon>
+              <div>
+                <span>1234-4567</span>
+                <span>Mon - Fri: 9:00 AM - 5:00 PM</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <mat-icon>email</mat-icon>
+              <div>
+                <span>info&#64;fellowshipofjesuschrist.org</span>
+                <span>We'll respond within 24 hours</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Links Column -->
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a routerLink="/about">About Us</a></li>
+            <li><a routerLink="/services">Service Times</a></li>
+            <li><a routerLink="/events">Events & Calendar</a></li>
+            <li><a routerLink="/blog">Blog & News</a></li>
+            <li><a routerLink="/archives">Church Archives</a></li>
+            <li><a routerLink="/contact">Contact & Visit</a></li>
+          </ul>
+        </div>
+
+        <!-- Ministries Column -->
+        <div class="footer-column">
+          <h4>Ministries</h4>
+          <ul class="footer-links">
+            <li><a href="#youth">Youth Ministry</a></li>
+            <li><a href="#children">Children's Church</a></li>
+            <li><a href="#worship">Worship Team</a></li>
+            <li><a href="#outreach">Community Outreach</a></li>
+            <li><a href="#prayer">Prayer Ministry</a></li>
+            <li><a href="#missions">Missions</a></li>
+          </ul>
+        </div>
+
+        <!-- Service Times Column -->
+        <div class="footer-column">
+          <h4>Service Times</h4>
+          <div class="service-times-list">
+            <div class="service-item">
+              <strong>Sunday Intercession</strong>
+              <span>09:00 AM</span>
+            </div>
+            <div class="service-item">
+              <strong>Sunday Worship</strong>
+              <span>10:00 AM</span>
+            </div>
+            <div class="service-item">
+              <strong>Wednesday Bible Study</strong>
+              <span>7:00 PM</span>
+            </div>
+            <div class="service-item">
+              <strong>Friday Youth</strong>
+              <span>6:30 PM</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-content">
+        <div class="copyright">
+          <p>&copy; 2025 Fellowship of Jesus Christ | All Rights Reserved</p>
+          <div class="legal-links">
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms of Service</a>
+          </div>
+        </div>
+
+        <!-- Social Media -->
+        <div class="social-media">
+          <span>Follow Us:</span>
+          <div class="social-links">
+            <a href="#facebook" class="social-link facebook">
+              <mat-icon>facebook</mat-icon>
+              <span class="social-label">Facebook</span>
+            </a>
+            <a href="#instagram" class="social-link instagram">
+              <mat-icon>camera_alt</mat-icon>
+              <span class="social-label">Instagram</span>
+            </a>
+            <a href="#youtube" class="social-link youtube">
+              <mat-icon>play_circle</mat-icon>
+              <span class="social-label">YouTube</span>
+            </a>
+            <a href="#twitter" class="social-link twitter">
+              <span class="twitter-x">𝕏</span>
+              <span class="social-label">Twitter</span>
+            </a>
+            <a href="#tiktok" class="social-link tiktok">
+              <span class="tiktok-icon">♪</span>
+              <span class="social-label">TikTok</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Back to Top -->
+        <button class="back-to-top" (click)="scrollToTop()">
+          <mat-icon>keyboard_arrow_up</mat-icon>
+          <span>Back to Top</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -46,4 +46,8 @@ export class HomeComponent {
     { title: 'Get Involved', route: '/events', icon: 'volunteer_activism' },
     { title: 'Contact Us', route: '/contact', icon: 'contact_mail' }
   ];
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }

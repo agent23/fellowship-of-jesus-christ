@@ -27,16 +27,17 @@ import { AuthService, AdminUser } from '../../services/auth.service';
 export class NavigationComponent {
   navigationItems = [
     { label: 'Home', route: '/home' },
-    { label: 'Services', route: '/services' },
-    { label: 'Events', route: '/events' },
-    { label: 'Blog', route: '/blog' },
-    { label: 'Archives', route: '/archives' },
+    // { label: 'Services', route: '/services' },
+    // { label: 'Events', route: '/events' },
+    // { label: 'Blog', route: '/blog' },
+    // { label: 'Archives', route: '/archives' },
     { label: 'About Us', route: '/about' },
     { label: 'Contact', route: '/contact' }
   ];
 
   isLoggedIn$: Observable<boolean>;
   currentUser$: Observable<AdminUser | null>;
+
 
   constructor(private authService: AuthService) {
     this.isLoggedIn$ = this.authService.isLoggedIn$;

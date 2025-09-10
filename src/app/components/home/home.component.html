@@ -1,19 +1,131 @@
-<!-- Hero Section -->
+<!-- Ultra Modern Hero Section -->
 <section class="hero-section">
-  <div class="hero-overlay">
-    <div class="hero-content">
-      <h1 class="hero-title">Welcome to Fellowship of Jesus Christ</h1>
-      <p class="hero-subtitle">
-        A community of faith, hope, and love serving God and our neighbors
-      </p>
-      <div class="hero-buttons">
-        <button mat-raised-button color="primary" class="cta-button" routerLink="/about">
-          Learn More About Us
-        </button>
-        <button mat-stroked-button class="cta-button secondary" routerLink="/contact">
-          Visit Us Today
-        </button>
+  <!-- Advanced Background System -->
+  <div class="hero-background">
+    <div class="gradient-mesh"></div>
+    <div class="morphing-blob blob-1"></div>
+    <div class="morphing-blob blob-2"></div>
+    <div class="morphing-blob blob-3"></div>
+    <canvas class="particle-canvas" #particleCanvas></canvas>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <div class="container">
+    <!-- Main Hero Grid Layout -->
+    <div class="hero-grid">
+
+      <!-- Left Content Panel -->
+      <div class="hero-content">
+
+        <!-- Main Heading with Stagger Animation -->
+        <div class="hero-heading">
+          <h1 class="hero-title">
+            <div class="title-container">
+              <span class="title-word" style="--delay: 0.1s">Where</span>
+              <span class="title-word" style="--delay: 0.2s">Faith</span>
+            </div>
+            <div class="title-container">
+              <span class="title-word highlight" style="--delay: 0.3s">Transforms</span>
+            </div>
+            <div class="title-container">
+              <span class="title-word" style="--delay: 0.4s">Lives</span>
+            </div>
+          </h1>
+
+          <div class="title-decoration">
+            <div class="decoration-line"></div>
+            <mat-icon class="decoration-icon">auto_awesome</mat-icon>
+            <div class="decoration-line"></div>
+          </div>
+        </div>
+
+        <!-- Enhanced Subtitle -->
+        <p class="hero-subtitle">
+          Experience authentic worship, forge meaningful relationships, and discover
+          your purpose in a community that celebrates faith, hope, and unconditional love.
+        </p>
+
+        <!-- Modern CTA Buttons -->
+        <div class="cta-container">
+          <button class="btn-primary" routerLink="/contact">
+            <div class="btn-bg"></div>
+            <div class="btn-content">
+              <mat-icon>event_available</mat-icon>
+              <span>Plan Your Visit</span>
+            </div>
+            <div class="btn-particles"></div>
+          </button>
+
+          <button class="btn-glass">
+            <div class="btn-content">
+              <mat-icon>play_circle_filled</mat-icon>
+              <span>Watch Live Stream</span>
+            </div>
+            <div class="btn-shine"></div>
+          </button>
+        </div>
       </div>
+
+      <!-- Right Visual Panel -->
+      <div class="hero-visual">
+        <!-- Main Visual Card with Glassmorphism -->
+        <div class="visual-card">
+          <div class="card-background">
+            <div class="card-blur"></div>
+            <div class="card-glow"></div>
+          </div>
+
+          <!-- Church Image with Advanced Frame -->
+          <div class="image-container">
+            <div class="image-frame">
+              <div class="image-content">
+                <mat-icon class="church-icon">account_balance</mat-icon>
+                <div class="image-text">
+                  <h3>Fellowship Sanctuary</h3>
+                  <p>Where hearts find home</p>
+                </div>
+              </div>
+              <div class="frame-ornament top-left"></div>
+              <div class="frame-ornament top-right"></div>
+              <div class="frame-ornament bottom-left"></div>
+              <div class="frame-ornament bottom-right"></div>
+            </div>
+          </div>
+
+          <!-- Live Stream Indicator -->
+          <div class="stream-indicator">
+            <div class="stream-dot"></div>
+            <span>Live Service</span>
+          </div>
+
+          <!-- Quick Action Pills -->
+          <div class="action-pills">
+            <div class="pill">
+              <mat-icon>location_on</mat-icon>
+              <div class="pill-content">
+                <span>Visit Us</span>
+                <small>Faith Street</small>
+              </div>
+            </div>
+            <div class="pill">
+              <mat-icon>schedule</mat-icon>
+              <div class="pill-content">
+                <span>Next Service</span>
+                <small>Sunday 10:00 AM</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Advanced Scroll Indicator -->
+  <div class="scroll-indicator">
+    <div class="scroll-text">Discover more</div>
+    <div class="scroll-animation">
+      <div class="scroll-line"></div>
+      <div class="scroll-dot"></div>
     </div>
   </div>
 </section>
@@ -32,39 +144,15 @@
       <div class="service-time-card">
         <mat-icon class="service-icon">groups</mat-icon>
         <h3>Bible Study</h3>
-        <p class="time">Wednesday 7:00 PM</p>
+        <p class="time">Wednesdays 7:00 PM</p>
         <p class="description">Deep dive into God's word together</p>
       </div>
       <div class="service-time-card">
         <mat-icon class="service-icon">child_care</mat-icon>
         <h3>Youth Ministry</h3>
-        <p class="time">Friday 6:30 PM</p>
+        <p class="time">Fridays 6:30 PM</p>
         <p class="description">Fun activities and spiritual growth</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- Upcoming Events -->
-<section class="events-section">
-  <div class="container">
-    <h2 class="section-title">Upcoming Events</h2>
-    <div class="events-grid">
-      <mat-card *ngFor="let event of upcomingEvents" class="event-card">
-        <mat-card-header>
-          <mat-card-title>{{ event.title }}</mat-card-title>
-          <mat-card-subtitle>{{ event.date | date:'mediumDate' }} at {{ event.time }}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <p>{{ event.description }}</p>
-        </mat-card-content>
-      </mat-card>
-    </div>
-    <div class="events-cta">
-      <button mat-button routerLink="/events" class="view-all-button">
-        View All Events
-        <mat-icon>arrow_forward</mat-icon>
-      </button>
     </div>
   </div>
 </section>
@@ -82,20 +170,4 @@
   </div>
 </section>
 
-<!-- Call to Action -->
-<section class="cta-section">
-  <div class="container">
-    <div class="cta-content">
-      <h2>Ready to Join Our Community?</h2>
-      <p>We'd love to welcome you into our church family. Come as you are!</p>
-      <div class="cta-buttons">
-        <button mat-raised-button color="primary" routerLink="/contact">
-          Plan Your Visit
-        </button>
-        <button mat-stroked-button routerLink="/about">
-          Learn More
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
+
