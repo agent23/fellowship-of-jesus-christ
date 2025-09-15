@@ -1,0 +1,119 @@
+<section class="hero-section" id="home">
+  <!-- Particle System Background -->
+  <div class="particle-container">
+    <div class="particle" *ngFor="let particle of [].constructor(50); let i = index"
+         [style.animation-delay]="(i * 0.1) + 's'"
+         [style.left]="(i * 2) + '%'"
+         [style.animation-duration]="(3 + (i % 3)) + 's'">
+    </div>
+  </div>
+
+  <!-- Floating Bubbles -->
+  <div class="bubbles-container">
+    <div class="bubble" *ngFor="let bubble of bubbles"
+         [style.animation-delay]="bubble.delay + 's'"
+         [style.left]="bubble.left + '%'"
+         [style.animation-duration]="bubble.duration + 's'"
+         [style.width.px]="bubble.size"
+         [style.height.px]="bubble.size">
+    </div>
+  </div>
+
+  <!-- Dynamic Light Rays -->
+  <div class="light-rays">
+    <div class="ray ray-1"></div>
+    <div class="ray ray-2"></div>
+    <div class="ray ray-3"></div>
+    <div class="ray ray-4"></div>
+  </div>
+
+  <!-- Floating Sacred Geometry -->
+  <div class="sacred-geometry">
+    <div class="geometry-shape circle-of-life"></div>
+    <div class="geometry-shape flower-of-life"></div>
+    <div class="geometry-shape trinity-symbol"></div>
+  </div>
+
+  <div class="hero-container">
+    <!-- Main Content with 3D Effect -->
+    <div class="hero-content-3d">
+
+      <!-- Holographic Title Section -->
+      <div class="holographic-title-section">
+        <div class="cosmic-badge">
+          <span class="badge-glow">✨</span>
+          <span class="badge-text">Eternal Life Awaits</span>
+          <span class="badge-glow">✨</span>
+        </div>
+
+        <h1 class="cosmic-title">
+          <span class="word word-1" data-text="FELLOWSHIP">FELLOWSHIP</span>
+          <span class="word word-2" data-text="OF">OF</span>
+          <span class="word word-3" data-text="JESUS">JESUS</span>
+          <span class="word word-4" data-text="CHRIST">CHRIST</span>
+        </h1>
+
+        <div class="divine-subtitle">
+          <span class="subtitle-line">Where Heaven Meets Earth</span>
+          <span class="subtitle-line">Where Hearts Find Home</span>
+          <span class="subtitle-line">Where Miracles Happen</span>
+        </div>
+      </div>
+
+      <!-- Interactive Power Buttons -->
+      <div class="power-buttons">
+        <button class="quantum-btn primary-quantum" (click)="onJoinUs()">
+          <div class="btn-energy"></div>
+          <div class="btn-core">
+            <span class="btn-text">JOIN THE MISSION</span>
+            <div class="btn-particles"></div>
+          </div>
+          <div class="btn-aura"></div>
+        </button>
+
+        <button class="quantum-btn secondary-quantum" (click)="onWatchLive()">
+          <div class="live-pulse-ring"></div>
+          <div class="btn-core">
+            <span class="live-indicator">🔴</span>
+            <span class="btn-text">EXPERIENCE LIVE</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Ministry Dimensions -->
+      <div class="ministry-dimensions">
+        <div class="dimension-title">Sacred Ministries</div>
+        <div class="ministry-grid">
+          <div class="ministry-portal worship">
+            <div class="portal-icon">🎵</div>
+            <div class="portal-name">Worship</div>
+            <div class="portal-energy"></div>
+          </div>
+          <div class="ministry-portal fellowship">
+            <div class="portal-icon">�</div>
+            <div class="portal-name">Fellowship</div>
+            <div class="portal-energy"></div>
+          </div>
+          <div class="ministry-portal prayer">
+            <div class="portal-icon">🙏</div>
+            <div class="portal-name">Prayer</div>
+            <div class="portal-energy"></div>
+          </div>
+          <div class="ministry-portal outreach">
+            <div class="portal-icon">❤️</div>
+            <div class="portal-name">Outreach</div>
+            <div class="portal-energy"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cosmic Audio Visualizer -->
+  <div class="audio-visualizer">
+    <div class="frequency-bar" *ngFor="let bar of [].constructor(20); let i = index"
+         [style.animation-delay]="(i * 0.1) + 's'"
+         [style.height]="(20 + (i % 30)) + 'px'">
+    </div>
+  </div>
+</section>

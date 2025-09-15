@@ -1,0 +1,21 @@
+<section class="ministries-section" id="ministries">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Our Ministries</h2>
+      <p class="section-subtitle">
+        Discover ways to grow, serve, and connect through our diverse ministry programs
+      </p>
+    </div>
+    
+    <div class="ministries-grid">
+      <div class="ministry-card" *ngFor="let ministry of ministries">
+        <div class="ministry-icon">{{ministry.icon}}</div>
+        <h3>{{ministry.title}}</h3>
+        <p>{{ministry.description}}</p>
+        <div class="ministry-details">
+          <span *ngFor="let detail of ministry.details">{{detail}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

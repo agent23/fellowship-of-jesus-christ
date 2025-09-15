@@ -1,164 +1,146 @@
-<!-- Hero Section -->
-<section class="hero-section">
-  <div class="hero-overlay">
-    <div class="hero-content">
-      <h1>Get in Touch</h1>
-      <p>We'd love to connect with you and welcome you to our church family</p>
-    </div>
-  </div>
-</section>
-
-<!-- Main Content -->
-<div class="contact-container">
+<section class="contact-section" id="contact">
   <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Visit & Connect With Us</h2>
+      <p class="section-subtitle">
+        We'd love to meet you and help you find your place in our church family
+      </p>
+    </div>
 
-    <!-- Contact Form & Info Section -->
-    <section class="contact-section">
-      <div class="contact-grid">
-
-        <!-- Contact Form -->
-        <div class="contact-form-container">
-          <h2>Send Us a Message</h2>
-          <form class="contact-form" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-            <div class="form-row">
-              <mat-form-field appearance="outline">
-                <mat-label>First Name</mat-label>
-                <input matInput 
-                       placeholder="Your first name" 
-                       formControlName="firstName"
-                       [class.mat-form-field-invalid]="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched">
-                <mat-error *ngIf="contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched">
-                  {{getErrorMessage('First Name')}}
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>Last Name</mat-label>
-                <input matInput 
-                       placeholder="Your last name" 
-                       formControlName="lastName"
-                       [class.mat-form-field-invalid]="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched">
-                <mat-error *ngIf="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched">
-                  {{getErrorMessage('Last Name')}}
-                </mat-error>
-              </mat-form-field>
-            </div>
-
-            <mat-form-field appearance="outline">
-              <mat-label>Email Address</mat-label>
-              <input matInput 
-                     type="email" 
-                     placeholder="your.email@example.com" 
-                     formControlName="email"
-                     [class.mat-form-field-invalid]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
-              <mat-error *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
-                {{getErrorMessage('email')}}
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <mat-label>Phone Number</mat-label>
-              <input matInput 
-                     type="tel" 
-                     placeholder="(555) 123-4567" 
-                     formControlName="phone">
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <mat-label>How can we help you?</mat-label>
-              <mat-select formControlName="helpType"
-                          [class.mat-form-field-invalid]="contactForm.get('helpType')?.invalid && contactForm.get('helpType')?.touched">
-                <mat-option value="visit">Planning a visit</mat-option>
-                <mat-option value="membership">Interested in membership</mat-option>
-                <mat-option value="prayer">Prayer request</mat-option>
-                <mat-option value="volunteer">Volunteer opportunities</mat-option>
-                <mat-option value="event">Event information</mat-option>
-                <mat-option value="other">Other</mat-option>
-              </mat-select>
-              <mat-error *ngIf="contactForm.get('helpType')?.invalid && contactForm.get('helpType')?.touched">
-                Please select how we can help you
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <mat-label>Message</mat-label>
-              <textarea matInput 
-                        rows="5" 
-                        placeholder="Tell us more about how we can help..." 
-                        formControlName="message"
-                        [class.mat-form-field-invalid]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"></textarea>
-              <mat-error *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched">
-                {{getErrorMessage('message')}}
-              </mat-error>
-            </mat-form-field>
-
-            <div class="form-actions">
-              <button mat-raised-button 
-                      color="primary" 
-                      type="submit"
-                      [disabled]="contactForm.invalid">
-                <mat-icon>send</mat-icon>
-                Send Message
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <!-- Contact Information -->
-        <div class="contact-info-container">
-          <h2>Contact Information</h2>
-
-          <div class="info-cards">
-            <div class="info-card">
-              <div class="info-icon">
-                <mat-icon>location_on</mat-icon>
-              </div>
-              <div class="info-content">
-                <h3>Address</h3>
-                <p>Faith Street<br>Mazenod, Maseru 1010</p>
-                <button mat-stroked-button>
-                  <mat-icon>directions</mat-icon>
-                  Get Directions
-                </button>
+    <div class="contact-content">
+      <div class="contact-info">
+        <div class="church-details">
+          <h3>Church Information</h3>
+          <div class="detail-grid">
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div>
+                <h4>Address</h4>
+                <p>Faith Avenue<br>
+                   Mazenod, Maseru<br>
+                   Lesotho</p>
               </div>
             </div>
 
-            <div class="info-card">
-              <div class="info-icon">
-                <mat-icon>phone</mat-icon>
-              </div>
-              <div class="info-content">
-                <h3>Phone</h3>
-                <p><a href="tel:+15551234567">1234-4567</a></p>
-                <small>Available during office hours</small>
-              </div>
-            </div>
-
-            <div class="info-card">
-              <div class="info-icon">
-                <mat-icon>email</mat-icon>
-              </div>
-              <div class="info-content">
-                <h3>Email</h3>
-                <p><a href="mailto:info@fellowshipofjesuschrist.org">info&#64;fellowshipofjesuschrist.org</a></p>
-                <small>We'll respond within 24 hours</small>
+            <div class="contact-item">
+              <div class="contact-icon">📞</div>
+              <div>
+                <h4>Phone</h4>
+                <p>Main: 123-HOPE<br>
+                   Prayer Line: 123-PRAY<br>
+                   Office Hours: Mon-Fri 8AM-5PM</p>
               </div>
             </div>
 
-            <div class="info-card">
-              <div class="info-icon">
-                <mat-icon>schedule</mat-icon>
+            <div class="contact-item">
+              <div class="contact-icon">✉️</div>
+              <div>
+                <h4>Email</h4>
+                <p>info&#64;fellowshipofjesuschrist.org<br>
+                   pastor&#64;fellowshipofjesuschrist.org<br>
+                   prayer&#64;fellowshipofjesuschrist.org</p>
               </div>
-              <div class="info-content">
-                <h3>Office Hours</h3>
-                <p>Monday - Friday<br>9:00 AM - 5:00 PM</p>
-                <small>Saturday by appointment</small>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">🌐</div>
+              <div>
+                <h4>Online</h4>
+                <p>Live Stream: Sundays 10AM<br>
+                   Podcast: Available on all platforms
+                </p>
               </div>
             </div>
           </div>
         </div>
 
+        <div class="visit-info">
+          <h3>Planning Your Visit?</h3>
+          <div class="visit-tips">
+            <div class="tip">
+              <strong>Parking:</strong> Free parking available in our main lot and street parking
+            </div>
+            <div class="tip">
+              <strong>What to Expect:</strong> Casual dress, friendly people, and a warm welcome
+            </div>
+            <div class="tip">
+              <strong>Children:</strong> Nursery and children's programs available during service
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
 
+      <div class="contact-form">
+        <h3>Get in Touch</h3>
+        <p>Whether you're new to the area, exploring faith, or looking for a church home,
+           we'd love to hear from you!</p>
+
+        <form class="form" (ngSubmit)="onSubmit()" #contactFormRef="ngForm">
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text"
+                   id="name"
+                   [(ngModel)]="contactForm.name"
+                   name="name"
+                   placeholder="Enter your full name"
+                   required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email"
+                   id="email"
+                   [(ngModel)]="contactForm.email"
+                   name="email"
+                   placeholder="Enter your email"
+                   required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel"
+                   id="phone"
+                   [(ngModel)]="contactForm.phone"
+                   name="phone"
+                   placeholder="Enter your phone number">
+          </div>
+
+          <div class="form-group">
+            <label for="interest">I'm Interested In:</label>
+            <select id="interest"
+                    [(ngModel)]="contactForm.interest"
+                    name="interest">
+              <option *ngFor="let option of interests" [value]="option.value">
+                {{option.label}}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message"
+                      [(ngModel)]="contactForm.message"
+                      name="message"
+                      placeholder="Share your message, questions, or prayer requests"
+                      rows="5"
+                      required></textarea>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <input type="checkbox"
+                   id="newsletter"
+                   [(ngModel)]="contactForm.newsletter"
+                   name="newsletter">
+            <label for="newsletter">I'd like to receive the weekly newsletter and event updates</label>
+          </div>
+
+          <button type="submit"
+                  class="btn-submit"
+                  [disabled]="!contactFormRef.form.valid">
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
-</div>
+</section>

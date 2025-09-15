@@ -1,0 +1,876 @@
+// COSMIC FELLOWSHIP HERO - NEXT GENERATION DESIGN
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: 
+    linear-gradient(135deg, #e3e8f0 0%, #9db4d8 100%),
+    radial-gradient(circle at 30% 40%, rgba(108, 99, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(255, 132, 132, 0.12) 0%, transparent 50%);
+  background-size: 100% 100%, 150% 150%, 120% 120%;
+  animation: gentleShift 20s ease-in-out infinite;
+}
+
+// PARTICLE SYSTEM
+.particle-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: particleFloat 12s linear infinite;
+  
+  &:nth-child(3n) {
+    background: radial-gradient(circle, rgba(255, 132, 132, 0.15) 0%, transparent 70%);
+    animation-duration: 15s;
+  }
+  
+  &:nth-child(3n+1) {
+    background: radial-gradient(circle, rgba(132, 255, 132, 0.1) 0%, transparent 70%);
+    animation-duration: 18s;
+  }
+  
+  &:nth-child(3n+2) {
+    background: radial-gradient(circle, rgba(255, 255, 132, 0.12) 0%, transparent 70%);
+    animation-duration: 14s;
+  }
+  
+  &:nth-child(5n) {
+    width: 1px;
+    height: 1px;
+    animation-duration: 20s;
+  }
+  
+  &:nth-child(7n) {
+    width: 1.5px;
+    height: 1.5px;
+    animation-duration: 16s;
+  }
+}
+
+// FLOATING BUBBLES SYSTEM
+.bubbles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, 
+    rgba(255, 255, 255, 0.8) 0%, 
+    rgba(255, 255, 255, 0.4) 40%, 
+    rgba(108, 99, 255, 0.1) 70%, 
+    transparent 100%);
+  backdrop-filter: blur(1px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  animation: bubbleFloat 8s ease-in-out infinite;
+  opacity: 0.7;
+  
+  &:nth-child(3n) {
+    background: radial-gradient(circle at 30% 30%, 
+      rgba(255, 182, 193, 0.7) 0%, 
+      rgba(255, 192, 203, 0.4) 40%, 
+      rgba(255, 132, 132, 0.1) 70%, 
+      transparent 100%);
+    animation-duration: 10s;
+  }
+  
+  &:nth-child(3n+1) {
+    background: radial-gradient(circle at 30% 30%, 
+      rgba(173, 216, 230, 0.7) 0%, 
+      rgba(176, 224, 230, 0.4) 40%, 
+      rgba(108, 99, 255, 0.1) 70%, 
+      transparent 100%);
+    animation-duration: 12s;
+  }
+  
+  &:nth-child(3n+2) {
+    background: radial-gradient(circle at 30% 30%, 
+      rgba(255, 255, 224, 0.7) 0%, 
+      rgba(255, 255, 240, 0.4) 40%, 
+      rgba(255, 255, 132, 0.1) 70%, 
+      transparent 100%);
+    animation-duration: 9s;
+  }
+  
+  &:nth-child(5n) {
+    animation-duration: 15s;
+    opacity: 0.5;
+  }
+  
+  &:nth-child(7n) {
+    animation-duration: 7s;
+    opacity: 0.6;
+  }
+}
+
+// DYNAMIC LIGHT RAYS
+.light-rays {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ray {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    rgba(108, 99, 255, 0.05) 30%, 
+    rgba(108, 99, 255, 0.08) 50%, 
+    rgba(108, 99, 255, 0.05) 70%, 
+    transparent 100%);
+  animation: lightRayMove 25s ease-in-out infinite;
+  
+  &.ray-1 { left: 25%; animation-delay: 0s; }
+  &.ray-2 { left: 45%; animation-delay: 6s; }
+  &.ray-3 { left: 65%; animation-delay: 12s; }
+  &.ray-4 { left: 85%; animation-delay: 18s; }
+}
+
+// SACRED GEOMETRY
+.sacred-geometry {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.geometry-shape {
+  position: absolute;
+  border: 1px solid rgba(108, 99, 255, 0.03);
+  border-radius: 50%;
+  animation: geometryRotate 60s linear infinite;
+  
+  &.circle-of-life {
+    width: 120px;
+    height: 120px;
+    top: 25%;
+    right: 25%;
+    border-color: rgba(108, 99, 255, 0.04);
+  }
+  
+  &.flower-of-life {
+    width: 100px;
+    height: 100px;
+    bottom: 30%;
+    left: 20%;
+    border-color: rgba(255, 132, 132, 0.03);
+    animation-direction: reverse;
+  }
+  
+  &.trinity-symbol {
+    width: 80px;
+    height: 80px;
+    top: 65%;
+    right: 40%;
+    border-color: rgba(132, 255, 132, 0.02);
+    animation-duration: 45s;
+  }
+}
+
+// MAIN CONTAINER
+.hero-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  width: 100%;
+  z-index: 10;
+}
+
+// 3D CONTENT WRAPPER
+.hero-content-3d {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  perspective: 1000px;
+}
+
+// HOLOGRAPHIC TITLE SECTION
+.holographic-title-section {
+  margin-bottom: 60px;
+  animation: holoEntry 2s ease-out;
+}
+
+.cosmic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  padding: 15px 30px;
+  margin-bottom: 40px;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+  
+  .badge-glow {
+    animation: glowPulse 2s ease-in-out infinite;
+    font-size: 20px;
+  }
+  
+  .badge-text {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+}
+
+.cosmic-title {
+  font-family: 'Orbitron', 'Inter', 'Arial Black', sans-serif;
+  font-size: clamp(3rem, 8vw, 8rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 40px;
+  perspective: 1000px;
+  
+  .word {
+    display: inline-block;
+    margin: 0 15px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24, #f0932b, #eb4d4b);
+    background-size: 600% 600%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbowShift 4s ease-in-out infinite;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    position: relative;
+    
+    &::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: blur(3px);
+      animation: holoGlow 3s ease-in-out infinite;
+    }
+    
+    &:nth-child(1) { animation-delay: 0s; }
+    &:nth-child(2) { animation-delay: 0.5s; }
+    &:nth-child(3) { animation-delay: 1s; }
+    &:nth-child(4) { animation-delay: 1.5s; }
+  }
+}
+
+.divine-subtitle {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+  .subtitle-line {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+    letter-spacing: 3px;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    animation: typewriter 3s steps(30) forwards;
+    border-right: 2px solid rgba(255, 255, 255, 0.7);
+    
+    &:nth-child(1) { animation-delay: 2s; }
+    &:nth-child(2) { animation-delay: 4s; }
+    &:nth-child(3) { animation-delay: 6s; }
+  }
+}
+
+// QUANTUM BUTTONS
+.power-buttons {
+  display: flex;
+  gap: 40px;
+  margin: 60px 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.quantum-btn {
+  position: relative;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 60px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  
+  &.primary-quantum {
+    .btn-energy {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24, #ff6b6b);
+      animation: energyRotate 3s linear infinite;
+      z-index: 1;
+    }
+    
+    .btn-core {
+      position: relative;
+      background: rgba(0, 0, 0, 0.8);
+      margin: 3px;
+      padding: 25px 50px;
+      border-radius: 57px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      
+      .btn-text {
+        color: white;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+    }
+    
+    .btn-aura {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(45deg, rgba(255, 107, 107, 0.3), rgba(78, 205, 196, 0.3));
+      border-radius: 70px;
+      z-index: 0;
+      animation: auraGlow 2s ease-in-out infinite;
+    }
+    
+    &:hover {
+      transform: translateY(-5px) scale(1.05);
+      
+      .btn-energy {
+        animation-duration: 1s;
+      }
+    }
+  }
+  
+  &.secondary-quantum {
+    .live-pulse-ring {
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: -20px;
+      bottom: -20px;
+      border: 2px solid #ff4757;
+      border-radius: 50%;
+      animation: pulseFire 2s ease-in-out infinite;
+      z-index: 0;
+    }
+    
+    .btn-core {
+      position: relative;
+      background: rgba(255, 71, 87, 0.2);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 71, 87, 0.5);
+      padding: 25px 40px;
+      border-radius: 60px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      
+      .live-indicator {
+        font-size: 20px;
+        animation: liveBlink 1s ease-in-out infinite;
+      }
+      
+      .btn-text {
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+    }
+    
+    &:hover {
+      transform: translateY(-5px) scale(1.05);
+      
+      .btn-core {
+        background: rgba(255, 71, 87, 0.4);
+        border-color: rgba(255, 71, 87, 0.8);
+      }
+    }
+  }
+}
+
+// STATS PORTAL
+.stats-portal {
+  margin: 80px 0;
+  
+  .portal-title {
+    font-size: 2rem;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 40px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: titleGlow 3s ease-in-out infinite;
+  }
+}
+
+.stats-constellation {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.stat-orb {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: orbFloat 6s ease-in-out infinite;
+  
+  .orb-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: ringRotate 8s linear infinite;
+    
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      top: -10px;
+      left: -10px;
+      width: calc(100% + 20px);
+      height: calc(100% + 20px);
+    }
+    
+    &::after {
+      top: -20px;
+      left: -20px;
+      width: calc(100% + 40px);
+      height: calc(100% + 40px);
+      animation: ringRotate 12s linear infinite reverse;
+    }
+  }
+  
+  .orb-core {
+    position: relative;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(20px);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    
+    .cosmic-icon {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+    
+    .quantum-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 5px;
+    }
+    
+    .quantum-label {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.8);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+  }
+  
+  .orb-energy {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    border-radius: 50%;
+    animation: energyRotate 4s linear infinite;
+    z-index: 1;
+  }
+  
+  &.orb-1 {
+    .orb-ring { border-color: rgba(255, 107, 107, 0.5); }
+    .orb-energy { background: conic-gradient(from 0deg, transparent, rgba(255, 107, 107, 0.3), transparent); }
+  }
+  
+  &.orb-2 {
+    .orb-ring { border-color: rgba(78, 205, 196, 0.5); }
+    .orb-energy { background: conic-gradient(from 0deg, transparent, rgba(78, 205, 196, 0.3), transparent); }
+    animation-delay: 1s;
+  }
+  
+  &.orb-3 {
+    .orb-ring { border-color: rgba(69, 183, 209, 0.5); }
+    .orb-energy { background: conic-gradient(from 0deg, transparent, rgba(69, 183, 209, 0.3), transparent); }
+    animation-delay: 2s;
+  }
+  
+  &.orb-4 {
+    .orb-ring { border-color: rgba(249, 202, 36, 0.5); }
+    .orb-energy { background: conic-gradient(from 0deg, transparent, rgba(249, 202, 36, 0.3), transparent); }
+    animation-delay: 3s;
+  }
+}
+
+// MINISTRY DIMENSIONS
+.ministry-dimensions {
+  margin-top: 80px;
+  
+  .dimension-title {
+    font-size: 2rem;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 40px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: titleGlow 3s ease-in-out infinite;
+  }
+}
+
+.ministry-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.ministry-portal {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  animation: portalFloat 5s ease-in-out infinite;
+  
+  .portal-icon {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+  }
+  
+  .portal-name {
+    font-size: 12px;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .portal-energy {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: portalPulse 3s ease-in-out infinite;
+  }
+  
+  &:hover {
+    transform: translateY(-10px) scale(1.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+  }
+  
+  &.worship {
+    border-color: rgba(255, 107, 107, 0.4);
+    animation-delay: 0s;
+  }
+  
+  &.fellowship {
+    border-color: rgba(78, 205, 196, 0.4);
+    animation-delay: 1s;
+  }
+  
+  &.prayer {
+    border-color: rgba(69, 183, 209, 0.4);
+    animation-delay: 2s;
+  }
+  
+  &.outreach {
+    border-color: rgba(249, 202, 36, 0.4);
+    animation-delay: 3s;
+  }
+}
+
+// AUDIO VISUALIZER
+.audio-visualizer {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 3px;
+  z-index: 5;
+}
+
+.frequency-bar {
+  width: 4px;
+  background: linear-gradient(to top, #ff6b6b, #4ecdc4, #45b7d1);
+  border-radius: 2px;
+  animation: audioFreq 1.5s ease-in-out infinite;
+  opacity: 0.7;
+  
+  &:nth-child(even) {
+    animation-duration: 1.2s;
+    background: linear-gradient(to top, #4ecdc4, #45b7d1, #f9ca24);
+  }
+  
+  &:nth-child(3n) {
+    animation-duration: 1.8s;
+    background: linear-gradient(to top, #f9ca24, #ff6b6b, #4ecdc4);
+  }
+  
+  &:nth-child(5n) {
+    animation-duration: 2.1s;
+    background: linear-gradient(to top, #45b7d1, #f9ca24, #ff6b6b);
+  }
+}
+
+// ANIMATIONS
+@keyframes gentleShift {
+  0%, 100% { 
+    background-position: 0% 0%, 0% 0%, 0% 0%;
+    opacity: 1;
+  }
+  50% { 
+    background-position: 0% 0%, 100% 100%, 100% 100%;
+    opacity: 0.98;
+  }
+}
+
+@keyframes particleFloat {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+@keyframes bubbleFloat {
+  0% { 
+    transform: translateY(100vh) translateX(0px) scale(0); 
+    opacity: 0; 
+  }
+  10% { 
+    opacity: 0.7; 
+    transform: translateY(95vh) translateX(10px) scale(0.5); 
+  }
+  25% { 
+    transform: translateY(75vh) translateX(-15px) scale(0.8); 
+  }
+  50% { 
+    transform: translateY(50vh) translateX(20px) scale(1); 
+  }
+  75% { 
+    transform: translateY(25vh) translateX(-10px) scale(0.9); 
+  }
+  90% { 
+    opacity: 0.4; 
+    transform: translateY(5vh) translateX(5px) scale(0.6); 
+  }
+  100% { 
+    transform: translateY(-10vh) translateX(0px) scale(0); 
+    opacity: 0; 
+  }
+}
+
+@keyframes lightRayMove {
+  0%, 100% { opacity: 0; transform: translateX(-20px); }
+  50% { opacity: 0.3; transform: translateX(20px); }
+}
+
+@keyframes geometryRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes holoEntry {
+  from { opacity: 0; transform: translateY(50px) rotateX(45deg); }
+  to { opacity: 1; transform: translateY(0) rotateX(0); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.2); filter: brightness(1.5); }
+}
+
+@keyframes rainbowShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes holoGlow {
+  0%, 100% { opacity: 0.3; filter: blur(3px); }
+  50% { opacity: 0.7; filter: blur(1px); }
+}
+
+@keyframes typewriter {
+  0% { 
+    width: 0; 
+    border-right-color: rgba(255, 255, 255, 0.7);
+  }
+  99% { 
+    width: 100%; 
+    border-right-color: rgba(255, 255, 255, 0.7);
+  }
+  100% { 
+    width: 100%; 
+    border-right-color: transparent;
+  }
+}
+
+@keyframes cursorBlink {
+  0%, 50% { border-right-color: rgba(255, 255, 255, 0.7); }
+  51%, 100% { border-right-color: transparent; }
+}
+
+@keyframes energyRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes auraGlow {
+  0%, 100% { opacity: 0.3; filter: blur(10px); }
+  50% { opacity: 0.7; filter: blur(5px); }
+}
+
+@keyframes pulseFire {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+@keyframes liveBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes titleGlow {
+  0%, 100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+  50% { text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6); }
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-15px) rotate(120deg); }
+  66% { transform: translateY(-5px) rotate(240deg); }
+}
+
+@keyframes ringRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes portalFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes portalPulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.1); opacity: 0.7; }
+}
+
+@keyframes audioFreq {
+  0% { height: 20px; transform: scaleY(1); }
+  25% { height: 45px; transform: scaleY(1.2); }
+  50% { height: 60px; transform: scaleY(1.5); }
+  75% { height: 35px; transform: scaleY(0.8); }
+  100% { height: 20px; transform: scaleY(1); }
+}
+
+// RESPONSIVE DESIGN
+@media (max-width: 768px) {
+  .cosmic-title {
+    font-size: clamp(2rem, 6vw, 4rem);
+    
+    .word {
+      margin: 0 5px;
+      display: block;
+      margin-bottom: 10px;
+    }
+  }
+  
+  .power-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .stats-constellation {
+    gap: 30px;
+  }
+  
+  .stat-orb {
+    width: 120px;
+    height: 120px;
+    
+    .orb-core {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  
+  .ministry-grid {
+    gap: 25px;
+  }
+  
+  .ministry-portal {
+    width: 100px;
+    height: 100px;
+  }
+}

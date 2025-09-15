@@ -1,44 +1,24 @@
 import { Routes } from '@angular/router';
-import { AdminGuard } from './guards/admin.guard';
+import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
+import { ServicesComponent } from './components/services/services.component';
+import { MinistriesComponent } from './components/ministries/ministries.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { EventsComponent } from './components/events/events.component';
+import { ArchivesComponent } from './components/archives/archives.component';
+import { GivingComponent } from './components/giving/giving.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { 
-    path: 'home', 
-    loadComponent: () => import('./components/home/home.component').then(m => m.HomeComponent)
-  },
-  { 
-    path: 'services', 
-    loadComponent: () => import('./components/services/services.component').then(m => m.ServicesComponent)
-  },
-  { 
-    path: 'events', 
-    loadComponent: () => import('./components/events/events.component').then(m => m.EventsComponent)
-  },
-  { 
-    path: 'blog', 
-    loadComponent: () => import('./components/blog/blog.component').then(m => m.BlogComponent)
-  },
-  { 
-    path: 'archives', 
-    loadComponent: () => import('./components/archives/archives.component').then(m => m.ArchivesComponent)
-  },
-  { 
-    path: 'contact', 
-    loadComponent: () => import('./components/contact/contact.component').then(m => m.ContactComponent)
-  },
-  { 
-    path: 'about', 
-    loadComponent: () => import('./components/about/about.component').then(m => m.AboutComponent)
-  },
-  { 
-    path: 'admin/login', 
-    loadComponent: () => import('./components/admin-login/admin-login.component').then(m => m.AdminLoginComponent)
-  },
-  { 
-    path: 'admin', 
-    loadComponent: () => import('./components/admin/admin.component').then(m => m.AdminComponent),
-    canActivate: [AdminGuard]
-  },
-  { path: '**', redirectTo: '/home' }
+  { path: '', component: HomeComponent },
+  { path: 'home', redirectTo: '', pathMatch: 'full' },
+  { path: 'about', component: AboutComponent },
+  { path: 'services', component: ServicesComponent },
+  { path: 'ministries', component: MinistriesComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'sermons', component: BlogComponent },
+  { path: 'events', component: EventsComponent },
+  { path: 'newsletter', component: ArchivesComponent },
+  { path: 'give', component: GivingComponent },
+  { path: '**', redirectTo: '' } // Wildcard route for 404 page
 ];

@@ -1,149 +1,90 @@
-<app-navigation></app-navigation>
-<router-outlet></router-outlet>
+<div class="app-container">
+  <app-navigation></app-navigation>
 
-<!-- Modern Footer Section -->
-<footer class="main-footer">
+  <!-- Router Outlet for Page Content -->
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
 
-  <!-- Main Footer Content -->
-  <div class="footer-main">
+  <!-- Footer -->
+  <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
-
-        <!-- Church Info Column -->
-        <div class="footer-column church-info">
-          <div class="footer-logo">
-            <mat-icon class="logo-icon">church</mat-icon>
-            <h3>Fellowship of Jesus Christ</h3>
-          </div>
-          <p class="church-description">
-            A community of faith, hope, and love serving God and our neighbors.
-            Everyone is welcome to fellowship with us regardless of background or beliefs.
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>Fellowship of Jesus Christ</h3>
+          <p class="footer-mission">
+            Building community through faith, hope, and love since 1972.
+            We are committed to following Christ and serving our community with joy.
           </p>
-
-          <!-- Contact Info -->
-          <div class="contact-info">
-            <div class="contact-item">
-              <mat-icon>location_on</mat-icon>
-              <div>
-                <span>Faith Street</span>
-                <span>Mazenod, Maseru 1010</span>
-              </div>
-            </div>
-            <div class="contact-item">
-              <mat-icon>phone</mat-icon>
-              <div>
-                <span>1234-4567</span>
-                <span>Mon - Fri: 9:00 AM - 5:00 PM</span>
-              </div>
-            </div>
-            <div class="contact-item">
-              <mat-icon>email</mat-icon>
-              <div>
-                <span>info&#64;fellowshipofjesuschrist.org</span>
-                <span>We'll respond within 24 hours</span>
-              </div>
-            </div>
+          <div class="footer-verse">
+            <p>"And let us consider how we may spur one another on toward love and good deeds."</p>
+            <span>Hebrews 10:24</span>
           </div>
         </div>
 
-        <!-- Quick Links Column -->
-        <div class="footer-column">
-          <h4>Quick Links</h4>
-          <ul class="footer-links">
-            <li><a routerLink="/about">About Us</a></li>
-            <li><a routerLink="/services">Service Times</a></li>
-            <li><a routerLink="/events">Events & Calendar</a></li>
-            <li><a routerLink="/blog">Blog & News</a></li>
-            <li><a routerLink="/archives">Church Archives</a></li>
-            <li><a routerLink="/contact">Contact & Visit</a></li>
-          </ul>
-        </div>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a routerLink="/about">About Us</a></li>
+              <li><a routerLink="/services">Service Times</a></li>
+              <li><a routerLink="/ministries">Ministries</a></li>
+              <li><a routerLink="/contact">Contact</a></li>
+            </ul>
+          </div>
 
-        <!-- Ministries Column -->
-        <div class="footer-column">
-          <h4>Ministries</h4>
-          <ul class="footer-links">
-            <li><a href="#youth">Youth Ministry</a></li>
-            <li><a href="#children">Children's Church</a></li>
-            <li><a href="#worship">Worship Team</a></li>
-            <li><a href="#outreach">Community Outreach</a></li>
-            <li><a href="#prayer">Prayer Ministry</a></li>
-            <li><a href="#missions">Missions</a></li>
-          </ul>
-        </div>
+          <div class="footer-column">
+            <h4>Resources</h4>
+            <ul>
+              <li><a routerLink="/sermons">Sermons</a></li>
+              <li><a routerLink="/contact">Prayer Requests</a></li>
+              <li><a href="#">Newsletter</a></li>
+              <li><a routerLink="/give">Give Online</a></li>
+            </ul>
+          </div>
 
-        <!-- Service Times Column -->
-        <div class="footer-column">
-          <h4>Service Times</h4>
-          <div class="service-times-list">
-            <div class="service-item">
-              <strong>Sunday Intercession</strong>
-              <span>09:00 AM</span>
-            </div>
-            <div class="service-item">
-              <strong>Sunday Worship</strong>
-              <span>10:00 AM</span>
-            </div>
-            <div class="service-item">
-              <strong>Wednesday Bible Study</strong>
-              <span>7:00 PM</span>
-            </div>
-            <div class="service-item">
-              <strong>Friday Youth</strong>
-              <span>6:30 PM</span>
+          <div class="footer-column">
+            <h4>Connect</h4>
+            <div class="footer-social">
+              <a href="#" class="social-link" title="Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                <span class="social-text">Facebook</span>
+              </a>
+              <a href="#" class="social-link" title="Instagram">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.40z"/>
+                </svg>
+                <span class="social-text">Instagram</span>
+              </a>
+              <a href="#" class="social-link" title="X (Twitter)">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                <span class="social-text">X (Twitter)</span>
+              </a>
+              <a href="#" class="social-link" title="YouTube">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                <span class="social-text">YouTube</span>
+              </a>
             </div>
           </div>
         </div>
+      </div>
 
+      <div class="footer-bottom">
+        <div class="footer-bottom-content">
+          <p>&copy; 2025 Fellowship of Jesus Christ. All rights reserved.</p>
+          <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Site Map</a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-
-  <!-- Footer Bottom -->
-  <div class="footer-bottom">
-    <div class="container">
-      <div class="footer-bottom-content">
-        <div class="copyright">
-          <p>&copy; 2025 Fellowship of Jesus Christ | All Rights Reserved</p>
-          <div class="legal-links">
-            <a href="#privacy">Privacy Policy</a>
-            <a href="#terms">Terms of Service</a>
-          </div>
-        </div>
-
-        <!-- Social Media -->
-        <div class="social-media">
-          <span>Follow Us:</span>
-          <div class="social-links">
-            <a href="#facebook" class="social-link facebook">
-              <mat-icon>facebook</mat-icon>
-              <span class="social-label">Facebook</span>
-            </a>
-            <a href="#instagram" class="social-link instagram">
-              <mat-icon>camera_alt</mat-icon>
-              <span class="social-label">Instagram</span>
-            </a>
-            <a href="#youtube" class="social-link youtube">
-              <mat-icon>play_circle</mat-icon>
-              <span class="social-label">YouTube</span>
-            </a>
-            <a href="#twitter" class="social-link twitter">
-              <span class="twitter-x">𝕏</span>
-              <span class="social-label">Twitter</span>
-            </a>
-            <a href="#tiktok" class="social-link tiktok">
-              <span class="tiktok-icon">♪</span>
-              <span class="social-label">TikTok</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Back to Top -->
-        <button class="back-to-top" (click)="scrollToTop()">
-          <mat-icon>keyboard_arrow_up</mat-icon>
-          <span>Back to Top</span>
-        </button>
-      </div>
-    </div>
-  </div>
-</footer>
+  </footer>
+</div>
