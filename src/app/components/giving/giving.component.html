@@ -1,0 +1,120 @@
+<div class="giving-container">
+  <div class="container">
+    <!-- Hero Section -->
+    <section class="giving-hero">
+      <div class="hero-content">
+        <h1>Give Online</h1>
+        <p class="hero-subtitle">Your generosity makes ministry possible</p>
+        <div class="hero-verse">
+          <p>"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."</p>
+          <span>2 Corinthians 9:7</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Banking Details Section -->
+    <section class="banking-section">
+      <h2>Banking Details</h2>
+      <div class="banking-card">
+        <div class="banking-header">
+          <div class="bank-icon">🏦</div>
+          <div class="bank-info">
+            <h3>{{ bankingDetails.bankName }}</h3>
+            <p>Fellowship of Jesus Christ Account</p>
+          </div>
+        </div>
+        
+        <div class="banking-details">
+          <div class="detail-row">
+            <div class="detail-label">Account Name:</div>
+            <div class="detail-value">
+              <span>{{ bankingDetails.accountName }}</span>
+              <button class="copy-btn" (click)="copyToClipboard(bankingDetails.accountName, 'Account Name')" title="Copy to clipboard">
+                📋
+              </button>
+            </div>
+          </div>
+          
+          <div class="detail-row">
+            <div class="detail-label">Account Number:</div>
+            <div class="detail-value">
+              <span class="account-number">{{ bankingDetails.accountNumber }}</span>
+              <button class="copy-btn" (click)="copyToClipboard(bankingDetails.accountNumber, 'Account Number')" title="Copy to clipboard">
+                📋
+              </button>
+            </div>
+          </div>
+          
+          <div class="detail-row">
+            <div class="detail-label">Routing Number:</div>
+            <div class="detail-value">
+              <span>{{ bankingDetails.routingNumber }}</span>
+              <button class="copy-btn" (click)="copyToClipboard(bankingDetails.routingNumber, 'Routing Number')" title="Copy to clipboard">
+                📋
+              </button>
+            </div>
+          </div>
+          
+          <div class="detail-row">
+            <div class="detail-label">SWIFT Code:</div>
+            <div class="detail-value">
+              <span>{{ bankingDetails.swiftCode }}</span>
+              <button class="copy-btn" (click)="copyToClipboard(bankingDetails.swiftCode, 'SWIFT Code')" title="Copy to clipboard">
+                📋
+              </button>
+            </div>
+          </div>
+          
+          <div class="detail-row reference-row">
+            <div class="detail-label">Reference:</div>
+            <div class="detail-value">
+              <span class="reference-text">{{ bankingDetails.reference }}</span>
+              <small class="reference-note">Please include your name for proper record keeping</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Giving Options -->
+    <section class="giving-options-section">
+      <h2>Ways to Give</h2>
+      <div class="giving-options-grid">
+        <div class="giving-option-card" *ngFor="let option of givingOptions">
+          <div class="option-icon">{{ option.icon }}</div>
+          <h3>{{ option.title }}</h3>
+          <p class="option-description">{{ option.description }}</p>
+          <div class="option-purpose">
+            <strong>Reference:</strong> {{ option.purpose }}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scripture Verses -->
+    <section class="verses-section">
+      <h2>What the Bible Says About Giving</h2>
+      <div class="verses-grid">
+        <div class="verse-card" *ngFor="let verse of verses">
+          <div class="verse-text">
+            <p>"{{ verse.text }}"</p>
+          </div>
+          <div class="verse-reference">
+            {{ verse.reference }}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Security Notice -->
+    <section class="security-section">
+      <div class="security-notice">
+        <div class="security-icon">🔒</div>
+        <div class="security-content">
+          <h3>Secure Giving</h3>
+          <p>Your donations are processed securely. For any questions about giving or to set up recurring donations, please contact our finance team at <a href="mailto:finance&#64;fellowshipofjesuschrist.org">finance&#64;fellowshipofjesuschrist.org</a> or call 123-4567.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
